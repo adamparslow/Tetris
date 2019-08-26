@@ -1,0 +1,65 @@
+#gameCanvas {
+   padding: 0;
+   margin: auto;
+   display: block;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   border: 2px solid white;
+}
+
+body {
+   background: #222;
+   font-family: Lucida Sans Unicode;
+}
+
+h1 {
+   color: white;
+   font-size: 30px;
+}
+
+p {
+   color: white;
+   font-size: 20px;
+   margin: 10px;
+}
+
+#score {
+   position: absolute;
+   right: 30px;
+   top: 50px;
+
+   color: white;
+   font-size: 20px;
+}
+
+#highScore {
+   position: absolute;
+   right: 30px;
+   top: 80px;
+
+   color: white;
+   font-size: 20px;
+}
+
+#endGame {
+   position: absolute;
+   left: 50%;
+   margin-left: -300px;
+   top: 100px;
+
+   color: gray;
+   font-size: 100px;
+}
+
+#endGameText {
+   position: absolute;
+   top: 300px;
+   margin-left: -308px;
+   left: 50%;
+
+   color: grey;
+   font-size: 30px;
+}

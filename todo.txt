@@ -1,0 +1,2 @@
+- change git to be for adam.parslow@hotmail.com
+- rework tetris

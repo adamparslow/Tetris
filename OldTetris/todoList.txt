@@ -1,0 +1,3 @@
+- Fix the bug with the rotating piece hitting the side
+
+- Add in the delay when hitting the bottom so that the piece can slide under if need be. 
