@@ -1,16 +1,19 @@
 .gameBoard {
   padding: 0;
   margin: auto;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 700px;
-  width: 400px;
   border: 2px solid white;
   background:black;
+}
+
+.square {
+  border: 1px solid white;
 }
 
 body {
