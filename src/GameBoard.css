@@ -1,0 +1,19 @@
+.gameBoard {
+  padding: 0;
+  margin: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 700px;
+  width: 400px;
+  border: 2px solid white;
+  background:black;
+}
+
+body {
+  background: #222;
+  font-family: Lucida Sans Unicode;
+}
