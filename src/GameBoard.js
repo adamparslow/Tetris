@@ -1,15 +1,14 @@
 import React from 'react';
 import './GameBoard.css';
 import { Square } from './Square';
-import { connect } from 'react-redux';
 
-class GameBoard extends React.Component {
+export default class GameBoard extends React.Component {
   render() {
     let squares = [];
-    for (let i = 0; i < this.props.height * this.props.width; i++) {
-      let colour = "black";
-      if (i/this.props.width === this.props.x) colour = "red";
-      squares.push(<Square size="38px" colour={colour} z/>);
+    for (let y = this.props.height - 1; y >= 0; y--) {
+      for (let x = 0; x < this.props.width; x++) {
+        squares.push(<Square size="38px" colour="black" x={x} y={y} piece={this.props.piece} />);
+      }
     }
 
     return (
@@ -23,10 +22,3 @@ class GameBoard extends React.Component {
   } 
 }
 
-function mapStateToProps(state) {
-  return {
-    x: state
-  }
-}
-
-export default connect(mapStateToProps)(GameBoard)
