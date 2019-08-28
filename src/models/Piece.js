@@ -73,12 +73,35 @@ export default class Piece {
         }
     }
 
-    moveLeft() {
+    canMoveLeft() {
+        let result = true;
+        this.blocks.forEach((block) => {
+            if (block % WIDTH === 0) {
+                result = false;
+            }
+        });
+        return result;
+    }
 
+    moveLeft() {
+        if(this.canMoveLeft())
+            this.blocks = this.blocks.map(pos => pos - 1);
+    }
+
+    canMoveRight() {
+        let result = true;
+        this.blocks.forEach((block) => {
+            if (block % WIDTH === WIDTH - 1) {
+                result = false;
+            }
+        });
+        return result;
     }
 
     moveRight() {
-
+        if (this.canMoveRight()) {
+            this.blocks = this.blocks.map(pos => pos + 1);
+        }
     }
 
     rotate() {

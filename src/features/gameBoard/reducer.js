@@ -19,17 +19,37 @@ paintPiece(initialState.squares, initialState.piece);
 const gameReducer = (state = initialState, action) => {
     switch(action.type) {
         case "MOVE_PIECE_DOWN":
-            let newState = movePieceDown(state);
-            return newState;
+            return movePieceDown(state);
+        case "MOVE_PIECE_LEFT":
+            return movePieceLeft(state);
+        case "MOVE_PIECE_RIGHT":
+            return movePieceRight(state);
         default:
             return state;
     }
 }
 
 function movePieceDown(state) {
-    console.log(state);
     setToBlack(state.squares);
     state.piece.moveDown();
+    paintPiece(state.squares, state.piece);
+    return {
+        ...state
+    };
+}
+
+function movePieceLeft(state) {
+    setToBlack(state.squares);
+    state.piece.moveLeft();
+    paintPiece(state.squares, state.piece);
+    return {
+        ...state
+    };
+}
+
+function movePieceRight(state) {
+    setToBlack(state.squares);
+    state.piece.moveRight();
     paintPiece(state.squares, state.piece);
     return {
         ...state
