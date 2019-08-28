@@ -8,7 +8,7 @@ import {store} from './config/store'
 (() => {
     ReactDOM.render(
         <Provider store={store}>
-            <GameBoard width="10" height="20" />
+            <GameBoard />
         </Provider>,
         document.getElementById('root')
     );
@@ -16,22 +16,22 @@ import {store} from './config/store'
     // inputSetup();
 })();
 
-function inputSetup() {
-    let keys = {}
+// function inputSetup() {
+//     let keys = {}
 
-    document.onkeydown = (evt) => {
-        if (!keys[evt.key]) {
-            keys[evt.key] = true;
-            console.log(evt.key);
-        }
-    }
+//     document.onkeydown = (evt) => {
+//         if (!keys[evt.key]) {
+//             keys[evt.key] = true;
+//             console.log(evt.key);
+//         }
+//     }
 
-    document.onkeyup = (evt) => {
-        if (keys[evt.key]) {
-            console.log(evt.key);
-        }
-        keys[evt.key] = false;
-    }
-}
+//     document.onkeyup = (evt) => {
+//         if (keys[evt.key]) {
+//             console.log(evt.key);
+//         }
+//         keys[evt.key] = false;
+//     }
+// }
 
 
