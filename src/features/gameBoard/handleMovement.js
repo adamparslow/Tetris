@@ -36,7 +36,6 @@ export default function handleMovement(gameBoard) {
     document.onkeydown = (e) => {
         if (!currentKeys[e.keyCode]) {
             currentKeys[e.keyCode] = true;
-            console.log(e.keyCode);
             switch(e.keyCode) {
                 case 37:
                     movePieceLeft();

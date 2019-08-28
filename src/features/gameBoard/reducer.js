@@ -1,9 +1,11 @@
 import { HEIGHT, WIDTH } from "../../config/globals";
-import Piece from '../../models/Piece'
+import Piece from '../../models/piece'
+import Graveyard from "../../models/graveyard";
 
 let initialState = {
     squares: [],
-    piece: new Piece(5, 5, 6)
+    piece: new Piece(3, HEIGHT, 6),
+    graveyard: new Graveyard()
 }
 
 for (let x = 0; x < WIDTH; x++) {
@@ -31,7 +33,11 @@ const gameReducer = (state = initialState, action) => {
 
 function movePieceDown(state) {
     setToBlack(state.squares);
-    state.piece.moveDown();
+    if (state.piece.moveDown(state.graveyard)) {
+        const pieceType = Math.floor(Math.random() * 7);
+        state.piece = new Piece(5, HEIGHT, pieceType);
+    } 
+    paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
         ...state
@@ -41,6 +47,7 @@ function movePieceDown(state) {
 function movePieceLeft(state) {
     setToBlack(state.squares);
     state.piece.moveLeft();
+    paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
         ...state
@@ -50,6 +57,7 @@ function movePieceLeft(state) {
 function movePieceRight(state) {
     setToBlack(state.squares);
     state.piece.moveRight();
+    paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
         ...state
@@ -67,7 +75,17 @@ function setToBlack(squares) {
 function paintPiece(squares, piece) {
     for (let x = 0; x < WIDTH; x++) {
         for (let y = 0; y < HEIGHT; y++) {
-            squares[x][y] = piece.getColour(x, y);
+            const colour = piece.getColour(x, y);
+            if (colour !== "") squares[x][y] = colour;
+        }
+    }
+}
+
+function paintGraveyard(squares, graveyard) {
+    for (let x = 0; x < WIDTH; x++) {
+        for (let y = 0; y < HEIGHT; y++) {
+            const colour = graveyard.getColour(x, y);
+            if (colour !== "") squares[x][y] = colour;
         }
     }
 }

@@ -54,7 +54,7 @@ export default class Piece {
             }
         });
 
-        return isInBlock ? this.colour : "Black";
+        return isInBlock ? this.colour : "";
     }
 
     canMoveDown() {
@@ -67,9 +67,13 @@ export default class Piece {
         return result;
     }
 
-    moveDown() {
+    moveDown(graveyard) {
         if (this.canMoveDown()) {
             this.blocks = this.blocks.map(pos => pos-WIDTH);
+            return false;
+        } else {
+            graveyard.addPiece(this);
+            return true;
         }
     }
 
