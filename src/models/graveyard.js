@@ -27,4 +27,14 @@ export default class Graveyard {
         });
         return colour;
     }
+
+    blockTaken(x, y) {
+        let result = false;
+        this.deadBlocks.forEach((block) => {
+            if (block.x === x && block.y === y) {
+                result = true;
+            }
+        });
+        return result;
+    }
 }

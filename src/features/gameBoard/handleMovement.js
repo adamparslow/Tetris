@@ -26,6 +26,9 @@ export default function handleMovement(gameBoard) {
     }
 
     window.setInterval((e) => {
+        if (currentKeys[40]) {
+            movePieceDown();
+        }
         frameCounter++;
         if (frameCounter === 10) {
             movePieceDown();

@@ -46,7 +46,7 @@ function movePieceDown(state) {
 
 function movePieceLeft(state) {
     setToBlack(state.squares);
-    state.piece.moveLeft();
+    state.piece.moveLeft(state.graveyard);
     paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
@@ -56,7 +56,7 @@ function movePieceLeft(state) {
 
 function movePieceRight(state) {
     setToBlack(state.squares);
-    state.piece.moveRight();
+    state.piece.moveRight(state.graveyard);
     paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {

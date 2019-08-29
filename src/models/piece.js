@@ -57,10 +57,16 @@ export default class Piece {
         return isInBlock ? this.colour : "";
     }
 
-    canMoveDown() {
+    canMoveDown(graveyard) {
         let result = true;
         this.blocks.forEach((block) => {
             if (block - WIDTH < 0) {
+                result = false;
+                return;
+            }
+            const x = block % WIDTH;
+            const y = Math.floor(block / WIDTH);
+            if (graveyard.blockTaken(x, y-1)) {
                 result = false;
             }
         });
@@ -68,7 +74,7 @@ export default class Piece {
     }
 
     moveDown(graveyard) {
-        if (this.canMoveDown()) {
+        if (this.canMoveDown(graveyard)) {
             this.blocks = this.blocks.map(pos => pos-WIDTH);
             return false;
         } else {
@@ -77,33 +83,43 @@ export default class Piece {
         }
     }
 
-    canMoveLeft() {
+    canMoveLeft(graveyard) {
         let result = true;
         this.blocks.forEach((block) => {
             if (block % WIDTH === 0) {
                 result = false;
             }
-        });
-        return result;
-    }
-
-    moveLeft() {
-        if(this.canMoveLeft())
-            this.blocks = this.blocks.map(pos => pos - 1);
-    }
-
-    canMoveRight() {
-        let result = true;
-        this.blocks.forEach((block) => {
-            if (block % WIDTH === WIDTH - 1) {
+            const x = block % WIDTH;
+            const y = Math.floor(block / WIDTH);
+            if (graveyard.blockTaken(x-1, y)) {
                 result = false;
             }
         });
         return result;
     }
 
-    moveRight() {
-        if (this.canMoveRight()) {
+    moveLeft(graveyard) {
+        if(this.canMoveLeft(graveyard))
+            this.blocks = this.blocks.map(pos => pos - 1);
+    }
+
+    canMoveRight(graveyard) {
+        let result = true;
+        this.blocks.forEach((block) => {
+            if (block % WIDTH === WIDTH - 1) {
+                result = false;
+            }
+            const x = block % WIDTH;
+            const y = Math.floor(block / WIDTH);
+            if (graveyard.blockTaken(x+1, y)) {
+                result = false;
+            }
+        });
+        return result;
+    }
+
+    moveRight(graveyard) {
+        if (this.canMoveRight(graveyard)) {
             this.blocks = this.blocks.map(pos => pos + 1);
         }
     }
