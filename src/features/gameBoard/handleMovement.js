@@ -25,6 +25,18 @@ export default function handleMovement(gameBoard) {
         });
     }
 
+    function rotatePiece(clockwise) {
+        if (clockwise) {
+            store.dispatch({
+                type: "ROTATE_PIECE_CLOCKWISE"
+            });
+        } else {
+            store.dispatch({
+                type: "ROTATE_PIECE_COUNTERCLOCKWISE"
+            });
+        }
+    }
+
     window.setInterval((e) => {
         if (currentKeys[40]) {
             movePieceDown();
@@ -45,6 +57,15 @@ export default function handleMovement(gameBoard) {
                     break;
                 case 39:
                     movePieceRight();
+                    break;
+                case 88:
+                case 38:
+                    rotatePiece(true);
+                    break;
+                case 90:
+                    rotatePiece(false);
+                    break;
+                default:
                     break;
             }
         }

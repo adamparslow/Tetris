@@ -12,26 +12,6 @@ import {store} from './config/store'
         </Provider>,
         document.getElementById('root')
     );
-
-    // inputSetup();
 })();
-
-// function inputSetup() {
-//     let keys = {}
-
-//     document.onkeydown = (evt) => {
-//         if (!keys[evt.key]) {
-//             keys[evt.key] = true;
-//             console.log(evt.key);
-//         }
-//     }
-
-//     document.onkeyup = (evt) => {
-//         if (keys[evt.key]) {
-//             console.log(evt.key);
-//         }
-//         keys[evt.key] = false;
-//     }
-// }
 
 
