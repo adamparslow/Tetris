@@ -70,7 +70,7 @@ function movePieceRight(state) {
 
 function rotatePiece(state, clockwise) {
     setToBlack(state.squares);
-    state.piece.rotate(clockwise);
+    state.piece.rotate(clockwise, state.graveyard);
     paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
