@@ -37,6 +37,12 @@ export default function handleMovement(gameBoard) {
         }
     }
 
+    function movePieceToBottom() {
+        store.dispatch({
+            type: "MOVE_PIECE_TO_BOTTOM"
+        });
+    }
+
     window.setInterval((e) => {
         if (currentKeys[40]) {
             movePieceDown();
@@ -49,6 +55,7 @@ export default function handleMovement(gameBoard) {
     }, 1000/FRAMES_PER_SEC)
 
     document.onkeydown = (e) => {
+        console.log(e.keyCode);
         if (!currentKeys[e.keyCode]) {
             currentKeys[e.keyCode] = true;
             switch(e.keyCode) {
@@ -64,6 +71,9 @@ export default function handleMovement(gameBoard) {
                     break;
                 case 90:
                     rotatePiece(false);
+                    break;
+                case 32:
+                    movePieceToBottom();
                     break;
                 default:
                     break;

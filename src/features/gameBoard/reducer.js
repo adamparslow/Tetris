@@ -31,6 +31,8 @@ const gameReducer = (state = initialState, action) => {
             return rotatePiece(state, true);
         case "ROTATE_PIECE_COUNTERCLOCKWISE":
             return rotatePiece(state, false);
+        case "MOVE_PIECE_TO_BOTTOM":
+            return movePieceToBottom(state);
         default:
             return state;
     }
@@ -43,6 +45,19 @@ function movePieceDown(state) {
         const pieceType = Math.floor(Math.random() * 7);
         state.piece = new PlayPiece(5, HEIGHT, pieceType, state.graveyard);
     }     
+    paintGraveyard(state.squares, state.graveyard);
+    paintPiece(state.squares, state.piece);
+    return {
+        ...state
+    };
+}
+
+function movePieceToBottom(state) {
+    setToBlack(state.squares);
+    state.piece.moveToBottom();
+    state.graveyard.addPiece(state.piece);
+    const pieceType = Math.floor(Math.random() * 7);
+    state.piece = new PlayPiece(5, HEIGHT, pieceType, state.graveyard);
     paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
