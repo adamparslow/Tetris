@@ -1,11 +1,12 @@
 import { HEIGHT, WIDTH } from "../../config/globals";
-import Piece from '../../models/piece'
+import PlayPiece from '../../models/playPiece';
 import Graveyard from "../../models/graveyard";
 
+let graveyard = new Graveyard();
 let initialState = {
     squares: [],
-    piece: new Piece(3, HEIGHT, 6),
-    graveyard: new Graveyard()
+    piece: new PlayPiece(3, HEIGHT, 6, graveyard),
+    graveyard
 }
 
 for (let x = 0; x < WIDTH; x++) {
@@ -38,9 +39,10 @@ const gameReducer = (state = initialState, action) => {
 function movePieceDown(state) {
     setToBlack(state.squares);
     if (state.piece.moveDown(state.graveyard)) {
+        state.graveyard.addPiece(state.piece);
         const pieceType = Math.floor(Math.random() * 7);
-        state.piece = new Piece(5, HEIGHT, pieceType);
-    } 
+        state.piece = new PlayPiece(5, HEIGHT, pieceType, state.graveyard);
+    }     
     paintGraveyard(state.squares, state.graveyard);
     paintPiece(state.squares, state.piece);
     return {
